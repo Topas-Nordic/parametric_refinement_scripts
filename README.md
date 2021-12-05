@@ -4,3 +4,5 @@
 #replace_any_3.py : Nicolai's replace script works on an entire folder
 #-and picks out the names of the xy files to produce the parametric inp file.
 # replace_any_3.py now takes file names ending with xy, xye and writes them to the parametric inp file
+#Powconvertor written by Jonas Sottmann for converting data in q-space to 2th in various formats.
+#Powconvertor needs to be generalised to accept newer ascii formats like .qI
