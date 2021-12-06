@@ -7,7 +7,7 @@ import sys
 
 def main():
 
-    ext =[".xy", ".xye"]
+    ext =[".xy", ".xye", ".raw"]
     xys = sorted([f for f in os.listdir() if f.endswith(tuple(ext))])
     z, ze = input("input file (including extension): "), input("output file (including extension): ")
 

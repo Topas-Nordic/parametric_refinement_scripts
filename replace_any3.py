@@ -10,7 +10,8 @@ def main():
     ext =[".xy", ".xye", ".raw"]
     xys = sorted([f for f in os.listdir() if f.endswith(tuple(ext))])
     z, ze = input("input file (including extension): "), input("output file (including extension): ")
-
+    h = input("string to replace: ")
+    q = len(h)
     for i in range(len(xys)):
 
         fin, fout = open(z), open(ze, 'a')  
@@ -18,6 +19,7 @@ def main():
 
         print(f"next : {xys[i]}")
         fout.write( s1.replace (xys[0], xys[i]))
+        fout.write( s1.replace( (h), f"{i:.qd}"
         fin.close(), fout.close()
 
            
