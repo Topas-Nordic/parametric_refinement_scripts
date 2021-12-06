@@ -7,3 +7,4 @@
 #Powconvertor written by Jonas Sottmann for converting data in q-space to 2th in various formats.
 #Powconvertor needs to be generalised to accept newer ascii formats like .qI
 #XRDCT_tools is a folder with scripts and workbooks that are most helpful for XRDCT
+#powconvertor removed- superseeded by qi_to_2th.py
