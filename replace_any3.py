@@ -19,7 +19,7 @@ def main():
 
         print(f"next : {xys[i]}")
         fout.write( s1.replace (xys[0], xys[i]))
-        fout.write( s1.replace( (h), f"{i:.qd}"
+        #fout.write( s1.replace( (h), f"{i:.3f}")) #sort this out later for replacing a string in start.inp with incrementing numbers
         fin.close(), fout.close()
 
            
