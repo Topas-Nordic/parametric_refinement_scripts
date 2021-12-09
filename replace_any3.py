@@ -1,11 +1,10 @@
 #! /usr/bin/env python
 
 import os
-import re
-import sys
+import time
 import argparse
 
-def main(xys, inp, out, strID):
+def main(xys, inp, out, strID, skip, no_ext):
     """[summary]
 
     Args:
@@ -14,25 +13,33 @@ def main(xys, inp, out, strID):
         out ([type]): [description]
     """
 
-    ext =[".xy", ".xye", ".raw"]
-    xys = sorted([f for f in os.listdir(xys) if f.endswith(tuple(ext))])
+    extensions =[".xy", ".xye", ".raw"]
+    if no_ext:
+        xys = sorted([f.split('.')[0] for f in os.listdir(xys) if f.endswith(tuple(extensions))])
+    else:
+        xys = sorted([f for f in os.listdir(xys) if f.endswith(tuple(extensions))])
+
     z, ze = inp, out
 
     if strID:
         q = len(strID)
 
-    for i in range(len(xys)):
+    start = time.time()
+    for i in range(0, len(xys), skip):
 
         fin, fout = open(z), open(ze, 'a+')  
         s1 = fin.read()
 
-        print(f"next : {xys[i]}")
         fout.write( s1.replace (xys[0], xys[i]))
+        print(xys[i])
 
         if strID:
             fout.write( s1.replace( (strID), f"{i:.{q}d}"))
-        fin.close(), fout.close()
 
+    fin.close(), fout.close()
+    end = time.time()
+
+    print(f"Total time: {end-start} seconds")
            
 if __name__ == '__main__':
 
@@ -47,9 +54,15 @@ if __name__ == '__main__':
         help="""Unique string identifier for generating unique variables for each refinement file.
              Ex: stringid = XXXX. Allows to refine unique scale factors. scale_XXXX """)
 
+    parser.add_argument('-no_ext', action="store_true", help="Replace filename in big INP including extension.")
+    parser.add_argument('-skip', nargs="?", default=1, type=int, help="Integer for taking every nth xy file.")
+
     args = parser.parse_args()
     args_dict = vars(args)
 
-    print(args)
-
-    #main()
+    main(args_dict['xys'],
+         args_dict['inp'],
+         args_dict['out'],
+         args_dict['id'],
+         args_dict['skip'],
+         args_dict['no_ext'])
