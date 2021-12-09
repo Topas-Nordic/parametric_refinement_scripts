@@ -25,17 +25,20 @@ def main(xys, inp, out, strID, skip, no_ext):
         q = len(strID)
 
     start = time.time()
+    fin, fout = open(z), open(ze, 'a+')  
+    s1 = fin.read()
+    inp_big = ''
     for i in range(0, len(xys), skip):
 
-        fin, fout = open(z), open(ze, 'a+')  
-        s1 = fin.read()
-
-        fout.write( s1.replace (xys[0], xys[i]))
+        
+        inp_replaced = s1.replace(xys[0], xys[i])
+        inp_big = inp_big + '\n' + inp_replaced
         print(xys[i])
 
-        if strID:
-            fout.write( s1.replace( (strID), f"{i:.{q}d}"))
+        #if strID:
+        #    fout.write( s1.replace( (strID), f"{i:.{q}d}"))
 
+    fout.write(inp_big)
     fin.close(), fout.close()
     end = time.time()
 
