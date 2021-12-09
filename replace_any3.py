@@ -33,7 +33,7 @@ def main(xys, inp, out, strID, skip, no_ext):
         
         inp_replaced = s1.replace(xys[0], xys[i]) # Replacing xdd file
         if strID:
-            inp_replaced =  inp_replaced.replace( (strID), f"{i:.{q}d}") # replacing any str IDs
+            inp_replaced =  inp_replaced.replace( (strID), f"{i:.{q}d}") # replacing any strIDs e.g. XXXX
 
         inp_big += '\n' + inp_replaced
         print(xys[i])
