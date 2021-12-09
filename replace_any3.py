@@ -31,12 +31,14 @@ def main(xys, inp, out, strID, skip, no_ext):
     for i in range(0, len(xys), skip):
 
         
-        inp_replaced = s1.replace(xys[0], xys[i])
-        inp_big = inp_big + '\n' + inp_replaced
+        inp_replaced = s1.replace(xys[0], xys[i]) # Replacing xdd file
+        if strID:
+            inp_replaced =  inp_replaced.replace( (strID), f"{i:.{q}d}") # replacing any str IDs
+
+        inp_big += '\n' + inp_replaced
         print(xys[i])
 
-        #if strID:
-        #    fout.write( s1.replace( (strID), f"{i:.{q}d}"))
+        
 
     fout.write(inp_big)
     fin.close(), fout.close()
